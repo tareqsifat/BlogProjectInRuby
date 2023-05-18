@@ -4,18 +4,22 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem "sqlite3"
 #
+#default: &default
+#  adapter: sqlite3
+#  pool: <%#= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#  timeout: 5000
+
 default: &default
-  adapter: sqlite3
+  adapter: mysql2
+  encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  username: root
+  password: password
+  host: localhost
 
 development:
-  adapter: mysql2
+  <<: *default
   database: demo_ruby
-  host: localhost
-  username: root
-  password: 
-  port: 3306
 
 
 # Warning: The database defined as "test" will be erased and
