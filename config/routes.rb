@@ -8,4 +8,11 @@ Rails.application.routes.draw do
   post '/login', to: 'users#login'
   get '/user-list', to: 'users#index'
 
+  
+  namespace :category do
+    resources :category, only: [:index, :show, :create, :update, :destroy]
+  end
+  # get '/category', to: 'category#index'
+
+
 end
