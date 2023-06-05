@@ -10,7 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_17_190719) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_05_063550) do
+  create_table "blogs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "user_id", limit: 10, default: "NULL"
+    t.string "category_id", limit: 10, default: "NULL"
+    t.string "sub_category_id", limit: 10, default: "NULL"
+    t.string "title", limit: 100, default: "NULL"
+    t.string "slug", limit: 100, default: "NULL"
+    t.string "body", default: "NULL"
+    t.string "image", default: "NULL"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_blogs_on_slug"
+  end
+
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sub_categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "category_id"
+    t.string "slug"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "fullName"
     t.string "username"
