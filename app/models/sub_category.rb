@@ -1,5 +1,5 @@
 class SubCategory < ApplicationRecord
-    belongs_to :categories, class_name: "Category",
+    belongs_to :category, optional: true
 
-    has_many :blogs
+    has_many :blog
 end

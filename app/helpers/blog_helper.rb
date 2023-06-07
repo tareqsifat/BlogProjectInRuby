@@ -1,8 +1,13 @@
 module BlogHelper
 
     def loadAllBlog
-        # Logic to fetch the list of all blogs
-        Blog.order(created_at: :desc)
+         # Assuming 'vars' is passed as a parameter (e.g., vars=cat,user,subCat)
+        # if(vars.key?("category"))
+        #     var = true
+        # end
+        blog = Blog.order(created_at: :desc)
+        #  Other logic for the index action
+        relationalBlogData = associations_to_include(relations, blog)
     end
 
 
@@ -29,13 +34,27 @@ module BlogHelper
     end
 
     private
-    def associations_to_include
-        associations = {
-          'cat' => :category,
-          'user' => :user,
-          'subCat' => :sub_category
-        }
-        @vars.map { |var| associations[var] }.compact
-      end
+
+    def associations_to_include(relations, blog)
+        associations = []
+
+        relations.each do |relation|
+            associations.push(relation.to_sym)
+        end
+
+        # if vars.key?("category")
+        #     associations.push("category".to_sym)
+        # end
+        # if vars.key?("sub_category")
+        #     associations.push("sub_category".to_sym)
+        # end
+        # if vars.key?("user")
+        #     associations.push("user".to_sym)
+        # end
+      blogInclude = blog.includes(associations)
+
+      blogwithRelation = blogInclude.as_json(include: associations)
+    
+    end
 
 end

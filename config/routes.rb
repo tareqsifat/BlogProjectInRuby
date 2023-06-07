@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  #subCategory Routes
+  get 'sub_category/index'
+  post 'sub_category/create'
+  put 'sub_category/update'
+  get 'sub_category/show'
+  delete 'sub_category/delete'
+
+
+  #BlogRoutes
   get 'blog/index'
   get 'blog/show'
   post 'blog/create'

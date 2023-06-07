@@ -4,11 +4,15 @@ class BlogController < ApplicationController
 
   def index
     @blogs = loadAllBlog
-    if @blogs.length != 0 then
-      render json: categories, status: :ok
-  else
-      render json: ["Message"=>"there is no blog"], status: :ok
-  end
+    # @blogs = Blog.includes([:category, :user, :sub_category]).order(created_at: :desc)
+    # render json: @blog
+    # if @blogs.length != 0 then
+    #   render json: @blogs, status: :ok
+    # else
+    #     render json: ["Message"=>"there is no blog"], status: :ok
+    # end
+    render json: @blogs
+
   end
 
   def show

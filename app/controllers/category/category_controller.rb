@@ -21,9 +21,11 @@ class Category::CategoryController < ApplicationController
     end
 
     def show
-        @category = Category.find(params[:id])
+        # params.inspect
+        # @category = Category.find(params[:id])
 
-        render json: @category, status: :ok
+        # render json: @category, status: :ok
+        render json: params
 
     end
     
