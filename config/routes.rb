@@ -9,10 +9,10 @@ Rails.application.routes.draw do
 
   #BlogRoutes
   get 'blog/index'
-  get 'blog/show'
+  get 'blog/show/:id', to: 'blog#show'
   post 'blog/create'
-  put 'blog/update'
-  delete 'blog/destroy'
+  put 'blog/update/:id', to: 'blog#update'
+  delete 'blog/destroy/:id', to: 'blog#destroy'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

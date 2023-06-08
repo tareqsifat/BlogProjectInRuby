@@ -4,18 +4,15 @@ class BlogController < ApplicationController
 
   def index
     @blogs = loadAllBlog
-    # @blogs = Blog.includes([:category, :user, :sub_category]).order(created_at: :desc)
-    # render json: @blog
-    # if @blogs.length != 0 then
-    #   render json: @blogs, status: :ok
-    # else
-    #     render json: ["Message"=>"there is no blog"], status: :ok
-    # end
-    render json: @blogs
-
+    if @blogs.length !=0
+    	render json: @blogs
+    else
+    	render json: {"Message" => "There is no Blog"}
+	end
   end
 
   def show
+	render json: singleBlog
   end
 
   def create
@@ -23,8 +20,10 @@ class BlogController < ApplicationController
   end
 
   def update
+	updateExistingBlog
   end
 
   def destroy
+	deleteExistingBlog
   end
 end
