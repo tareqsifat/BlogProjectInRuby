@@ -79,7 +79,7 @@ module BlogHelper
             params_keys.include?(key)
         }
         
-    #   blogInclude = blog.includes(associations)
+        #   blogInclude = blog.includes(associations)
 
       blogwithRelation = blog.as_json(include: associations)
     
